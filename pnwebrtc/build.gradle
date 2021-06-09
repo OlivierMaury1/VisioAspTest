@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+    //buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        //applicationId "me.kevingleason.pnwebrtc"
+        minSdkVersion 15
+        targetSdkVersion 30
+        versionName project.VERSION_NAME
+        versionCode Integer.parseInt(project.VERSION_CODE)
+    }
+    buildTypes {
+        release {
+//            runProguard false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    google()
+
+    /flatDir {
+        dirs 'libs'
+    }/
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'io.pristine:libjingle:9694@aar'
+    //implementation group: 'io.pristine', name: 'libjingle', version: '9694', ext: 'pom'
+    implementation 'com.pubnub:pubnub-android:3.7.4'
+}
+
+//apply from: '../maven_push.gradle'

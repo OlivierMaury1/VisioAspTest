@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+//buildTypes {
+//    debug {
+//        applicationIdSuffix ".debug"
+//        debuggable true
+//        minifyEnabled false
+//        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//    }
+//   release {
+//        minifyEnabled false
+//        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//    }
+//}
+
+android {
+    compileSdkVersion 30
+    //buildToolsVersion '30.0.3'
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        //applicationId "me.kevingleason.pnwebrtc"
+        minSdkVersion 17
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+//            runProguard false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+repositories {
+    mavenCentral()
+    google()
+
+    /flatDir {
+        dirs 'libs'
+    }/
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.pubnub:pubnub-android:3.7.4'
+    implementation 'io.pristine:libjingle:9694@aar'
+    implementation project(':pnwebrtc')
+}
